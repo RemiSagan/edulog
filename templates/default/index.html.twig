@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+		<h1 class="display-4">Je fais mon choix</h1>
+		<p class="lead">Je choisi mes spécialitées pour les années futures</p>
+	</div>
+
+	<div class="row">
+		<div class="container">
+			<div class="card-deck mb-3 text-center">
+				<div class="card mb-4 shadow-sm">
+					<div class="card-header">
+						<h4 class="my-0 font-weight-normal">Informations personnelles</h4>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="firstName">Prénom</label>
+								<input type="text" class="form-control" value="{{user.firstname}}" disabled>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="lastName">Nom de famille</label>
+								<input type="text" class="form-control" value="{{user.name}}" disabled>
+							</div>
+						</div>
+
+						<div class="mb-3">
+							<label for="email">Date de naissance</label>
+							<input type="text" class="form-control" value="{{user.dateOfBirth|date('Y-m-d H:i:s') }}" disabled>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<h4 class="d-flex justify-content-between align-items-center mb-3">
+				<span class="text-muted">study.name</span>
+			</h4>
+			<ul class="list-group mb-3">
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<div>
+						<h6 class="my-0">speciality.name</h6>
+					</div>
+					<span class="text-muted">study.duration</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<div>
+						<h6 class="my-0">speciality.name</h6>
+					</div>
+					<span class="text-muted">study.duration</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-md-6">
+			<h4 class="d-flex justify-content-between align-items-center mb-3">
+				<span class="text-muted">study.name</span>
+			</h4>
+			<ul class="list-group mb-3">
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<div>
+						<h6 class="my-0">speciality.name</h6>
+					</div>
+					<span class="text-muted">study.duration</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<div>
+						<h6 class="my-0">speciality.name</h6>
+					</div>
+					<span class="text-muted">study.duration</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+{% endblock %}
