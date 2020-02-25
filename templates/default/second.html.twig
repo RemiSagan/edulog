@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Je fais mon choix
+{% block title %}Choix pour la seconde
 {% endblock %}
 
 {% block body %}
@@ -9,7 +9,7 @@
 		<h1 class="display-4">Je fais mon choix</h1>
 		<p class="lead">Je choisi mes spécialitées pour les années futures</p>
 	</div>
-
+	
 	{# Info user #}
 	<div class="row">
 		<div class="container">
@@ -37,32 +37,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-6">
-					<div class="card-deck mb-3 text-center">
-						<div class="card mb-4 shadow-sm">
-							<div class="card-header">
-								<h4 class="my-0 font-weight-normal">Choix pour la seconde</h4>
-							</div>
-							<div class="card-body">
-								<a href="{{ path('choice_second', {'user': user.id}) }}" class="btn btn-primary">Choisir</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-6">
-					<div class="card-deck mb-3 text-center">
-						<div class="card mb-4 shadow-sm">
-							<div class="card-header">
-								<h4 class="my-0 font-weight-normal">Choix pour la terminale</h4>
-							</div>
-							<div class="card-body">
-								<a href="{{ path('homepage', {'user': user.id}) }}" class="btn btn-primary">Choisir</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+
 		</div>
 	</div>
 
