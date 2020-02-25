@@ -22,11 +22,6 @@ class Specialty
     private $name;
 
     /**
-     * @ORM\Column(type="smallint")
-     */
-    private $duration;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -49,18 +44,6 @@ class Specialty
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
 
         return $this;
     }

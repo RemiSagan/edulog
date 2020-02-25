@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Specialty;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,6 +22,16 @@ class AppFixtures extends Fixture
                 ->setCreatedAt(new \DateTime('now'))
                 ->setUpdatedAt(new \DateTime('now'));
             $manager->persist($user);
+        }
+
+        $specialties = ["Art", "Écologie", "Histoire/Géographie", "Littérature/Philisophie", "Mathématiques", "Numérique", "Science et vie de la Terre", "Sciences de l'ingénieur", "Sciences économiques", "Physique chimie", "Langues et littératures étrangères", "Langues et cultures de l'Antiquité"];
+        foreach ($specialties as $specialie) {
+            $specialty = new Specialty();
+            $specialty
+                ->setName($specialie)
+                ->setCreatedAt(new \DateTime('now'))
+                ->setUpdatedAt(new \DateTime('now'));
+            $manager->persist($specialty);
         }
 
         $manager->flush();
