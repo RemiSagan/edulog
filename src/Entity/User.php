@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,16 @@ class User
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Specialty", inversedBy="users")
+     */
+    private $specialty;
+
+    public function __construct()
+    {
+        $this->specialty = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +114,32 @@ class User
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Specialty[]
+     */
+    public function getSpecialty(): Collection
+    {
+        return $this->specialty;
+    }
+
+    public function addSpecialty(Specialty $specialty): self
+    {
+        if (!$this->specialty->contains($specialty)) {
+            $this->specialty[] = $specialty;
+        }
+
+        return $this;
+    }
+
+    public function removeSpecialty(Specialty $specialty): self
+    {
+        if ($this->specialty->contains($specialty)) {
+            $this->specialty->removeElement($specialty);
+        }
 
         return $this;
     }
