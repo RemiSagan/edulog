@@ -14,11 +14,11 @@ class ChooseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('firstname')
-            ->add('date_of_birth')
-            ->add('updated_at')
-            ->add('created_at')
+            // ->add('name')
+            // ->add('firstname')
+            // ->add('date_of_birth')
+            // ->add('updated_at')
+            // ->add('created_at')
             ->add('specialties', EntityType::class, [
                 'class' => Specialty::class,
                 'choice_label' => 'name',

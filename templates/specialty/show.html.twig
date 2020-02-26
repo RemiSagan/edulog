@@ -30,9 +30,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('specialty_index') }}">back to list</a>
+    <a href="{{ path('specialty_index') }}" class="btn btn-secondary">Retour à la liste</a>
 
-    <a href="{{ path('specialty_edit', {'id': specialty.id}) }}">edit</a>
+    <a href="{{ path('specialty_edit', {'id': specialty.id}) }}" class="btn btn-warning">Editer</a>
 
     {{ include('specialty/_delete_form.html.twig') }}
 {% endblock %}
