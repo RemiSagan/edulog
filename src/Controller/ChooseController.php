@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\ChooseType;
+use App\Repository\SpecialtyRepository;
+use App\Repository\StudyRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,7 +41,7 @@ class ChooseController extends AbstractController
     /**
      * @Route("/choose/{id}/edit", name="choose_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, StudyRepository $study, SpecialtyRepository $specialty): Response
     {
         $form = $this->createForm(ChooseType::class, $user);
         $form->handleRequest($request);
@@ -51,9 +53,16 @@ class ChooseController extends AbstractController
             return $this->redirectToRoute('choose_index');
         }
 
+        foreach ($study->findAll() as $study) {
+            $toto[$study->getName()] = $specialty->findBy(
+                ['study' => $study->getId()]
+            );
+        }
+
         return $this->render('choose/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            'toto' => $toto
         ]);
     }
 }

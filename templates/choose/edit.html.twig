@@ -18,7 +18,18 @@
 		</div>
 	</div>
 
-	{{ include('choose/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+<pre>
+	{{ dump(toto) }}
+	{{ dump(form.specialties) }}
+</pre>
+
+	{{ form_start(form) }}
+		{{ form_row(form.specialties) }}
+		<button class="btn btn-success">{{ button_label|default('Mise à jour') }}</button>
+	{{ form_end(form) }}
+
+
+	{# {{ include('choose/_form.html.twig', {'button_label': 'Mise à jour'}) }} #}
 	<a href="{{ path('choose_index') }}" class="btn btn-secondary">Retour à la liste</a>
 
 {% endblock %}

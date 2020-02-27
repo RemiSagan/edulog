@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un niveau d'étude{% endblock %}
+
+{% block body %}
+    <h1>Editer un niveau d'étude</h1>
+
+    {{ include('study/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+
+    <a href="{{ path('study_index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+    {{ include('study/_delete_form.html.twig') }}
+{% endblock %}

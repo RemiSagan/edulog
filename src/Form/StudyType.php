@@ -2,29 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Specialty;
 use App\Entity\Study;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SpecialtyType extends AbstractType
+class StudyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('study', EntityType::class, [
-                'class' => Study::class,
-                'choice_label' => 'name'
-            ]);
+            ->add('duration')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Specialty::class,
+            'data_class' => Study::class,
         ]);
     }
 }

@@ -24,11 +24,6 @@ class Specialty
     private $name;
 
     /**
-     * @ORM\Column(type="smallint")
-     */
-    private $duration;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -42,6 +37,11 @@ class Specialty
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="specialties")
      */
     private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Study", inversedBy="specialty")
+     */
+    private $study;
 
     public function __construct()
     {
@@ -61,18 +61,6 @@ class Specialty
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
 
         return $this;
     }
@@ -125,6 +113,18 @@ class Specialty
             $this->users->removeElement($user);
             $user->removeSpecialty($this);
         }
+
+        return $this;
+    }
+
+    public function getStudy(): ?Study
+    {
+        return $this->study;
+    }
+
+    public function setStudy(?Study $study): self
+    {
+        $this->study = $study;
 
         return $this;
     }

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Niveau d'études{% endblock %}
+
+{% block body %}
+    <h1>Niveau d'études</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ study.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ study.name }}</td>
+            </tr>
+            <tr>
+                <th>Durée</th>
+                <td>{{ study.duration }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('study_index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+    <a href="{{ path('study_edit', {'id': study.id}) }}" class="btn btn-warning">Editer</a>
+
+    {{ include('study/_delete_form.html.twig') }}
+{% endblock %}

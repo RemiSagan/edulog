@@ -2,12 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Specialty;
 use App\Entity\User;
+use App\Entity\Specialty;
+use App\Repository\StudyRepository;
+use App\Repository\SpecialtyRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ChooseType extends AbstractType
 {

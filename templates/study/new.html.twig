@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un niveau d'étude{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un niveau d'étude</h1>
+
+    {{ include('study/_form.html.twig') }}
+
+    <a href="{{ path('study_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}
