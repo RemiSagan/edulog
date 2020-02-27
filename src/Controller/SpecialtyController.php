@@ -42,6 +42,7 @@ class SpecialtyController extends AbstractController
             $entityManager->persist($specialty);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Spécialité créee avec succès');
             return $this->redirectToRoute('specialty_index');
         }
 
@@ -73,6 +74,7 @@ class SpecialtyController extends AbstractController
             $specialty->setUpdatedAt(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Spécialité enregistrer avec succès');
             return $this->redirectToRoute('specialty_index');
         }
 
@@ -91,6 +93,7 @@ class SpecialtyController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($specialty);
             $entityManager->flush();
+            $this->addFlash('success', 'Spécialité supprimer avec succès');
         }
 
         return $this->redirectToRoute('specialty_index');

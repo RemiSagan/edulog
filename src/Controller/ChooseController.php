@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\ChooseType;
-use App\Entity\Specialty;
-use App\Repository\SpecialtyRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +30,7 @@ class ChooseController extends AbstractController
     {
         $specialty = $user->getSpecialties();
 
-        return $this->render('user/show.html.twig', [
+        return $this->render('choose/show.html.twig', [
             'user' => $user,
             'specialties' => $specialty
         ]);
@@ -49,7 +47,7 @@ class ChooseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setUpdatedAt(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'Choix enregistrer avec succès');
             return $this->redirectToRoute('choose_index');
         }
 
@@ -57,19 +55,5 @@ class ChooseController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}/choose", name="choose_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, User $user): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($user);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('user_index');
     }
 }

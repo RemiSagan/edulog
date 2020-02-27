@@ -4,19 +4,27 @@
 {% endblock %}
 
 {% block body %}
-
 	<h1>Liste des utilisateurs</h1>
 
-	<table class="table">
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			{{ message }}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	{% endfor %}
+
+	<table class="table text-center">
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Name</th>
-				<th>Firstname</th>
-				<th>Date_of_birth</th>
-				<th>Updated_at</th>
-				<th>Created_at</th>
-				<th>actions</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Date de naissance</th>
+				<th>Date de création</th>
+				<th>Date de mise à jour</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,15 +34,16 @@
 					<td>{{ user.name }}</td>
 					<td>{{ user.firstname }}</td>
 					<td>{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d') : '' }}</td>
-					<td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 					<td>
-						<a href="{{ path('choose_edit', {'id': user.id}) }}">Choix</a>
+						<a href="{{ path('choose_edit', {'id': user.id}) }}" class="btn btn-dark">Faire mon choix</a>
+						<a href="{{ path('choose_show', {'id': user.id}) }}" class="btn btn-secondary">Voir mes choix</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="7">no records found</td>
+					<td colspan="7">Aucune données</td>
 				</tr>
 			{% endfor %}
 		</tbody>

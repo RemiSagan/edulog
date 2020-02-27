@@ -1,19 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Specialty index{% endblock %}
+{% block title %}Liste des spécialités{% endblock %}
 
 {% block body %}
-    <h1>Specialty index</h1>
+    <h1>Liste des spécialités</h1>
 
-    <table class="table">
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			{{ message }}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	{% endfor %}
+
+	<table class="table text-center">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Duration</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Durée</th>
+				<th>Date de création</th>
+				<th>Date de mise à jour</th>
+				<th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,13 +34,13 @@
                 <td>{{ specialty.createdAt ? specialty.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ specialty.updatedAt ? specialty.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('specialty_show', {'id': specialty.id}) }}">show</a>
-                    <a href="{{ path('specialty_edit', {'id': specialty.id}) }}">edit</a>
+                    <a href="{{ path('specialty_show', {'id': specialty.id}) }}" class="btn btn-dark">Voir</a>
+                    <a href="{{ path('specialty_edit', {'id': specialty.id}) }}" class="btn btn-secondary">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucune données</td>
             </tr>
         {% endfor %}
         </tbody>
