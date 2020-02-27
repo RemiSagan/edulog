@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Choice;
 use App\Entity\Specialty;
-use App\Entity\Study;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,10 +23,11 @@ class ChoiceType extends AbstractType
                 'class' => Specialty::class,
                 'choice_label' => 'name'
             ])
-            ->add('study', EntityType::class, [
-                'class' => Study::class,
-                'choice_label' => 'name'
-            ]);
+            // ->add('study', EntityType::class, [
+            //     'class' => Study::class,
+            //     'choice_label' => 'name'
+            // ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

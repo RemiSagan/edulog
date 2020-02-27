@@ -24,28 +24,13 @@ class Study
     private $name;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\OneToMany(targetEntity="App\Entity\Choice", mappedBy="study")
      */
-    private $duration;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created_at;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updated_at;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Choice", mappedBy="study_id", orphanRemoval=true)
-     */
-    private $choices;
+    private $choice;
 
     public function __construct()
     {
-        $this->choices = new ArrayCollection();
+        $this->choice = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,55 +50,19 @@ class Study
         return $this;
     }
 
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updated_at;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Choice[]
      */
-    public function getChoices(): Collection
+    public function getChoice(): Collection
     {
-        return $this->choices;
+        return $this->choice;
     }
 
     public function addChoice(Choice $choice): self
     {
-        if (!$this->choices->contains($choice)) {
-            $this->choices[] = $choice;
-            $choice->setStudyId($this);
+        if (!$this->choice->contains($choice)) {
+            $this->choice[] = $choice;
+            $choice->setStudy($this);
         }
 
         return $this;
@@ -121,11 +70,11 @@ class Study
 
     public function removeChoice(Choice $choice): self
     {
-        if ($this->choices->contains($choice)) {
-            $this->choices->removeElement($choice);
+        if ($this->choice->contains($choice)) {
+            $this->choice->removeElement($choice);
             // set the owning side to null (unless already changed)
-            if ($choice->getStudyId() === $this) {
-                $choice->setStudyId(null);
+            if ($choice->getStudy() === $this) {
+                $choice->setStudy(null);
             }
         }
 

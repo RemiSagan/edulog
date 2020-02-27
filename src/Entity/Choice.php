@@ -29,8 +29,7 @@ class Choice
     private $specialty;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Study", inversedBy="choices")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Study", inversedBy="choice")
      */
     private $study;
 
@@ -63,12 +62,12 @@ class Choice
         return $this;
     }
 
-    public function getStudyId(): ?Study
+    public function getStudy(): ?Study
     {
         return $this->study;
     }
 
-    public function setStudyId(?Study $study): self
+    public function setStudy(?Study $study): self
     {
         $this->study = $study;
 
